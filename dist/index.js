@@ -30766,10 +30766,17 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
-const spawn = __nccwpck_require__(7718);
+const { spawn } = __nccwpck_require__(7718);
 
 try {
-    const cxflow = spawn('java ' + core.getInput('java_opts') + ' -jar ' + core.getInput('cxflow_jar_path'))
+    const cxflow = spawn(core.getInput('java_path'), [
+        core.getInput('java_opts'),
+        ' -jar ',
+        core.getInput('cxflow_jar_path'),
+        '--scan',
+        '--f',
+        '.'
+    ])
     cxflow.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
     });

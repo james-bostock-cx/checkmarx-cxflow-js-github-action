@@ -3,7 +3,14 @@ const github = require('@actions/github');
 const { spawn } = require('node:child_process');
 
 try {
-    const cxflow = spawn('java ' + core.getInput('java_opts') + ' -jar ' + core.getInput('cxflow_jar_path'))
+    const cxflow = spawn(core.getInput('java_path'), [
+        core.getInput('java_opts'),
+        ' -jar ',
+        core.getInput('cxflow_jar_path'),
+        '--scan',
+        '--f',
+        '.'
+    ])
     cxflow.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
     });

@@ -2,6 +2,10 @@ name: 'Checkmarx CxFlow JavaScript Action'
 description: 'Simplify Checkmarx Scanning of source code along with result consumption leveraging the Checkmarx CxFlow solution.'
 author: 'Checkmarx Professional Services'
 inputs:
+  java_path:
+    required: true
+    description: 'The location of the java executable'
+    default: ''
   cxflow_jar_path:
     required: true
     description: 'The location of the CxFlow jar file'
