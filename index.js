@@ -5,11 +5,10 @@ const { spawn } = require('node:child_process');
 try {
     const cxflow = spawn(core.getInput('java_path'), [
         core.getInput('java_opts'),
-        ' -jar ',
+        '-jar',
         core.getInput('cxflow_jar_path'),
         '--scan',
-        '--f',
-        '.'
+        '--f=.'
     ])
     cxflow.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
