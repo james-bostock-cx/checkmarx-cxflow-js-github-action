@@ -11,10 +11,12 @@ try {
         '--f=.'
     ])
     cxflow.stdout.on('data', (data) => {
+        data = data.replace(/\n$/, "");
         console.log(`stdout: ${data}`);
     });
 
     cxflow.stderr.on('data', (data) => {
+        data = data.replace(/\n$/, "");
         console.error(`stderr: ${data}`);
     });
 
