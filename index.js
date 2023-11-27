@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const spawn = require('node:child_process');
+const { spawn } = require('node:child_process');
 
 try {
     const cxflow = spawn('java ' + core.getInput('java_opts') + ' -jar ' + core.getInput('cxflow_jar_path'))
