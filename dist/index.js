@@ -30771,11 +30771,10 @@ const { spawn } = __nccwpck_require__(7718);
 try {
     const cxflow = spawn(core.getInput('java_path'), [
         core.getInput('java_opts'),
-        ' -jar ',
+        '-jar',
         core.getInput('cxflow_jar_path'),
         '--scan',
-        '--f',
-        '.'
+        '--f=.'
     ])
     cxflow.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
@@ -30786,7 +30785,9 @@ try {
     });
 
     cxflow.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
+        if (code !== 0) {
+            core.setFailed(`child process exited with code ${code}`);
+        }
     });
 } catch (error) {
     core.setFailed(error.message);
