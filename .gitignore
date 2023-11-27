@@ -89,7 +89,9 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# We use @vercel/ncc to build  a single JavaScript file which is created in
+# the dist directory.
+#dist
 
 # Gatsby files
 .cache/
