@@ -20,7 +20,9 @@ try {
     });
 
     cxflow.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
+        if (code !== 0) {
+            core.setFailed(`child process exited with code ${code}`);
+        }
     });
 } catch (error) {
     core.setFailed(error.message);
