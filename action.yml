@@ -1,0 +1,139 @@
+name: 'Checkmarx CxFlow JavaScript Action'
+description: 'Simplify Checkmarx Scanning of source code along with result consumption leveraging the Checkmarx CxFlow solution.'
+author: 'Checkmarx Professional Services'
+inputs:
+  cxflow_jar_path:
+    required: true
+    description: 'The location of the CxFlow jar file'
+    default: 'C:\\CxFlow\\cx-flow.jar'
+  checkmarx_url:
+    required: true
+    description: 'Provide Checkmarx URL'
+    default: ''
+  team:
+    required: true
+    description: 'Select a Checkmarx Team'
+    default: '/CxServer/SP/Company'
+  checkmarx_username:
+    required: true
+    description: 'Provide Checkmarx Username'
+    default: ''
+  checkmarx_password:
+    required: true
+    description: 'Provide Checkmarx Password'
+    default: ''
+  checkmarx_client_secret:
+    required: true
+    description: 'Provide Checkmarx Client Secret'
+    default: ''
+  project:
+    required: true
+    default: ''
+    description: 'Select a Checkmarx Project'
+  app:
+    required: false
+    default: 'SampleApp'
+    description: 'Select an Application Name used by downstream bug tracker systems'
+  preset:
+    required: false
+    default: 'High and Medium'
+    description: 'Select a Checkmarx Preset'
+  break_build:
+    required: false
+    default: false
+    description: 'Break build based on Checkmarx findings?'
+  bug_tracker:
+    required: false
+    default: Sarif
+    description: 'Bug tracker for the scan results.'
+  incremental:
+    required: false
+    default: true
+    description: 'Incremental Scans?'
+  params:
+    required: false
+    default: ''
+    description: 'Additional CLI parameters'
+  github_token:
+    required: false
+    default: ${{ github.token }}
+    description: 'GitHub API Token'
+  scanners:
+    required: true
+    default: ''
+    description: 'Vulnerability Scanners (sast, sca, cxgo)'
+  extra_certificates:
+    required: false
+    default: ''
+    description: 'Subdirectory containing extra X509 certificate files (.crt) to be imported into the CxFlow JRE. Example: \"certificates\"'
+######### SCA Properties ##########
+  sca_api_url:
+    required: false
+    description: 'Provide SCA API URL'
+    default: 'https://api.scacheckmarx.com'
+  sca_app_url:
+    required: false
+    description: 'Provide SCA APP URL'
+    default: 'https://sca.scacheckmarx.com'
+  sca_access_control_url:
+    required: false
+    description: 'Provide SCA Access Control URL'
+    default: 'https://platform.checkmarx.net'
+  sca_tenant:
+    required: false
+    description: 'Provide SCA Tenant'
+    default: ''
+  sca_username:
+    required: false
+    description: 'Provide SCA Username'
+    default: ''
+  sca_password:
+    required: false
+    description: 'Provide SCA Password'
+    default: ''
+  ######### Java/JVM Properties ##########
+  java_opts:
+    required: false
+    description: Java options will be passed to java
+    default: -XX:MaxRAMPercentage=75.0
+  ######### Jira Properties ##########
+  jira_url:
+    required: false
+    description: 'Jira URL'
+    default: ''
+  jira_username:
+    required: false
+    description: 'Jira Username'
+    default: ''
+  jira_token:
+    required: false
+    description: 'Jira Token'
+    default: ''
+  jira_project:
+    required: false
+    description: 'Jira Project'
+    default: ''
+  jira_issue_type:
+    required: false
+    description: 'Jira Issue Type'
+    default: ''
+  jira_open_transition:
+    required: false
+    description: 'Jira Open Transition'
+    default: ''
+  jira_close_transition:
+    required: false
+    description: 'Jira Close Transition'
+    default: ''
+  jira_open_status:
+    required: false
+    description: 'Jira Open Status'
+    default: ''
+  jira_closed_status:
+    required: false
+    description: 'Jira Closed Status'
+    default: ''
+
+runs:
+  using: 'node20'
+  main:  'dist/index.js'
