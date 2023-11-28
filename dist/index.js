@@ -30776,6 +30776,7 @@ try {
         '--scan',
         '--f=.',
         '--checkmarx.version=9.0',
+        '--checkmarx.multi-tenant=false',
         '--checkmarx.base_url=' + core.getInput('checkmarx_url'),
         '--checkmarx.username=' + core.getInput('checkmarx_username'),
         '--checkmarx.password=' + core.getInput('checkmarx_password'),
